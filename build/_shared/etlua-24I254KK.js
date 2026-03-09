@@ -1,1 +1,1 @@
-import{a}from"/myst_assets_folder/_shared/chunk-YEB6T6UV.js";import"/myst_assets_folder/_shared/chunk-GHA6ELD7.js";import"/myst_assets_folder/_shared/chunk-J3PKFMLQ.js";import"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";export default a();
+import{a}from"/Machine-Learning-EEG/build/_shared/chunk-YEB6T6UV.js";import"/Machine-Learning-EEG/build/_shared/chunk-GHA6ELD7.js";import"/Machine-Learning-EEG/build/_shared/chunk-J3PKFMLQ.js";import"/Machine-Learning-EEG/build/_shared/chunk-OZE3FFNP.js";export default a();
