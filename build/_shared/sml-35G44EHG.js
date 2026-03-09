@@ -1,1 +1,1 @@
-import{a}from"/Machine-Learning-EEG/build/_shared/chunk-BOZTHPBC.js";import"/Machine-Learning-EEG/build/_shared/chunk-OZE3FFNP.js";export default a();
+import{a}from"/myst_assets_folder/_shared/chunk-BOZTHPBC.js";import"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";export default a();
