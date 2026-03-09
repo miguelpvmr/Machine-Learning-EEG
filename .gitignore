@@ -1,0 +1,12 @@
+_build/
+.ipynb_checkpoints/
+
+*.parquet
+*.csv
+*.edf
+*.npz
+*.npy
+*.h5
+
+02_Metadata/
+04_TUSZ_Features_ML/
