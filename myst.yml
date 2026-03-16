@@ -1,5 +1,6 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+
 project:
   id: 50f12d90-e2ae-4840-baf3-fd79ce509e2f
   # title:
@@ -7,9 +8,11 @@ project:
   # keywords: []
   # authors: []
   # github:
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+
 site:
   template: book-theme
   options:
     codeFold: true
+    codeFoldShow: "Mostrar código"
+    codeFoldHide: "Ocultar código"
     
