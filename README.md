@@ -9,21 +9,22 @@
 
 ---
 
-# Project Overview
+# Descripción general del proyecto
 
-Este proyecto de investigación se centra en el diseño e implementación de un pipeline de **Machine Learning** para la clasificación automática de crisis epilépticas utilizando señales de EEG de superficie. La evaluación se realiza sobre el **Temple University Hospital EEG Seizure Corpus (TUSZ)**, uno de los repositorios públicos más grandes y complejos en el área de la neuroingeniería.
+Este proyecto de investigación se centra en el diseño e implementación de un flujo de trabajo (pipeline) de **aprendizaje automático** para la clasificación automática de crisis epilépticas utilizando señales de EEG de superficie. La evaluación se realiza sobre el **Corpus de Crisis de EEG del Hospital de la Universidad de Temple (TUSZ)**, uno de los repositorios públicos más grandes y complejos en el área de la neuroingeniería.
 
-A diferencia de los enfoques convencionales, este flujo integra técnicas de **Escalado Robusto** para mitigar artefactos biomédicos y **Aprendizaje de Variedades (UMAP)** para la visualización tridimensional de fenotipos ictales. El objetivo es identificar patrones espaciotemporales que permitan distinguir entre actividad **Basal**, **Focal** y **Generalizada** con alta precisión y explicabilidad clínica.
+A diferencia de los enfoques convencionales, este flujo integra técnicas de **escalado robusto** para mitigar artefactos biomédicos y **aprendizaje de variedades (UMAP)** para la visualización tridimensional de fenotipos ictales. El objetivo es identificar patrones espaciotemporales que permitan distinguir entre actividad **basal**, **focal** y **generalizada** con alta precisión y explicabilidad clínica.
 
-## Data Source
+## Fuente de datos
 
-El dataset utilizado es el **TUH EEG Seizure Corpus (TUSZ) v1.5.2/v2.0.0**, el cual contiene registros clínicos anotados por expertos neurólogos. 
-* **Origen:** [The Temple University Hospital EEG Resources](https://isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml)
-* **Referencia:** Shah, V., et al. (2018). "The Temple University Hospital EEG Seizure Corpus."
+El conjunto de datos utilizado es el **Corpus de Crisis de EEG TUH (TUSZ) v1.5.2/v2.0.0**, el cual contiene registros clínicos anotados por expertos neurólogos.  
 
-# Project Structure
+* **Origen:** https://isip.piconepress.com/projects/nedc/html/tuh_eeg/ 
+* **Referencia:** Shah, V., Weltin, E. von, Lopez, S., McHugh, J. R., Veloso, L., Golmohammadi, M., Obeid, I., & Picone, J. (2018). The Temple University Hospital Seizure Detection Corpus. *Frontiers in Neuroinformatics, 12*, 83. https://doi.org/10.3389/fninf.2018.00083
 
-Para garantizar la reproducibilidad, el proyecto sigue una arquitectura de **Data Lake** local y modularización de código en la carpeta `src/`.
+# Estructura del proyecto
+
+Para garantizar la reproducibilidad, el proyecto sigue una arquitectura de **Data Lake** local y una modularización del código en la carpeta `src/`.
 
 ```text
 TUSZ_project/
@@ -43,14 +44,3 @@ TUSZ_project/
 ├── .gitignore
 ├── README.md
 └── environment.yml
-```
-
-Objectives
-El objetivo central es construir un modelo de clasificación multiclase capaz de identificar el tipo de crisis en ventanas de tiempo cortas.
-
-Target Definition
-0 - Basal (Reposo): Actividad eléctrica normal o interictal.
-
-1 - Focal: Crisis localizadas en una región específica del cerebro.
-
-2 - Generalizada: Crisis que involucran ambos hemisferios desde el inicio.
