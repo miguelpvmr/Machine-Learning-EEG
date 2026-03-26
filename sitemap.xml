@@ -5,9 +5,6 @@
     <loc>http://localhost:3000</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/eda-eeg-mlr</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/an-lisis-exploratorio-y-caracterizaci-n-de-fenotip</loc>
   </url>
   <url>
