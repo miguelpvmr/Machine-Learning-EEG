@@ -21,8 +21,11 @@ jobs:
         with:
           node-version: 24
 
+      - name: Instalar MyST
+        run: npm install -g mystmd
+
       - name: Construir el sitio (Build)
-        run: npx myst build --html
+        run: myst build --html
         env:
           BASE_URL: /${{ github.event.repository.name }}
 
