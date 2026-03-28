@@ -1,1 +1,17 @@
-/* No Custom Stylesheet Provided */
+/* User Provided Stylesheet */
+
+/* Oculta el texto "Source" */
+.myst-dropdown-header-title {
+  font-size: 0;
+}
+
+/* Muestra texto personalizado cuando está cerrado */
+.myst-dropdown-header-title::after {
+  content: "Mostrar código";
+  font-size: 1rem;
+}
+
+/* Cambia texto cuando está abierto (details[open]) */
+details[open] .myst-dropdown-header-title::after {
+  content: "Ocultar código";
+}

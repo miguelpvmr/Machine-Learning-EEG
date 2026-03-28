@@ -1,1 +1,1 @@
-import{a}from"/Machine-Learning-EEG/build/_shared/chunk-GL7YE3UO.js";import"/Machine-Learning-EEG/build/_shared/chunk-GALEQFJV.js";import"/Machine-Learning-EEG/build/_shared/chunk-OZE3FFNP.js";export default a();
+import{a}from"/build/_shared/chunk-GL7YE3UO.js";import"/build/_shared/chunk-GALEQFJV.js";import"/build/_shared/chunk-OZE3FFNP.js";export default a();
