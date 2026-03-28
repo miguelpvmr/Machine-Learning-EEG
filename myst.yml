@@ -2,17 +2,20 @@
 version: 1
 
 project:
-  id: 50f12d90-e2ae-4840-baf3-fd79ce509e2f
-  # title:
-  # description:
-  # keywords: []
-  # authors: []
-  # github:
+  id: 8b3b7640-f742-4567-a7bf-22402d4d593f
+  title: "Exploración de Datos - TUSZ"
+  
+  exclude:
+    - TUSZ_DataLake/**
+    - models/**
+    - src/**
+    - _build/**
+    - .myst/**
+
+  toc:
+    - file: "notebooks/1_data_exploration.ipynb"
 
 site:
   template: book-theme
   options:
-    codeFold: true
-    codeFoldShow: "Mostrar código"
-    codeFoldHide: "Ocultar código"
-    
+    style: custom.css

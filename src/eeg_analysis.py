@@ -57,11 +57,59 @@ import plotly.express as px
 import pyarrow.parquet as pq
 import glob
 import os
+import base64
 
 
 # =============================================================================
 # SECTION 1 — METADATA DEMOGRAPHICS
 # =============================================================================
+
+def render_embedded_image(file_path: str, width: int = 600) -> str:
+    """
+    Loads a local image file and converts it into a Base64-encoded HTML string 
+    for direct embedding within a Jupyter Notebook.
+
+    This method bypasses local pathing restrictions and ensures image 
+    persistence across different environments.
+
+    Args:
+        file_path (str): Absolute or relative path to the image file.
+        width (int): Display width of the image in pixels. Defaults to 600.
+
+    Returns:
+        str: A formatted HTML string containing the Base64-encoded image 
+             and a professional caption/note.
+    """
+    # Verify file existence before processing
+    if not os.path.exists(file_path):
+        return f"<p style='color: #d9534f;'>Error: File not found at {file_path}</p>"
+
+    # Read binary file and encode to Base64
+    with open(file_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
+    
+    # Determine MIME type based on file extension
+    file_ext = os.path.splitext(file_path)[1].lower().strip(".")
+    mime_type = f"image/{file_ext if file_ext != 'jpg' else 'jpeg'}"
+    image_uri = f"data:{mime_type};base64,{encoded_string}"
+
+    # Professional HTML structure for notebook visualization
+    html_content = f"""
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+        <div style="width: 100%; display: flex; justify-content: center;">
+            <img src="{image_uri}" width="{width}" 
+                 style="border: 1px solid #ececec; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        </div>
+        <div style="margin-top: 15px; max-width: 750px; text-align: center;">
+            <p style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #444; line-height: 1.5;">
+                <span style="font-style: italic; font-weight: 600;">Nota.</span> 
+                RF = random forest; SVM = support vector machines. 
+                Generado mediante asistencia de inteligencia artificial (Gemini, 2026).
+            </p>
+        </div>
+    </div>
+    """
+    return html_content
 
 def plot_demographics(path_metadata):
     """
@@ -857,7 +905,6 @@ def get_top_features_ranking(df_sample, target_col='macro_class', top_k=10):
         })
 
     df_ranking = pd.DataFrame(ranking_data).set_index('mRMR Rank')
-    print(df_ranking.style.format({'Mutual Info': '{:.4f}', 'IQR': '{:.4f}'}))
     return df_ranking
 
 
@@ -911,7 +958,7 @@ def plot_spearman_heatmap(df_train_sample, top_15_features):
         spine.set_visible(True)
 
     plt.tight_layout()
-    _display_figure(fig, dpi=120, max_width='65%')
+    _display_figure(fig, dpi=250, max_width='100%')
 
 
 def plot_pca_rank(df_sample, top_features, target_col='macro_class'):
@@ -998,7 +1045,7 @@ def plot_pca_rank(df_sample, top_features, target_col='macro_class'):
             spine.set_visible(True)
 
     plt.tight_layout()
-    _display_figure(fig, max_width='85%')
+    _display_figure(fig, dpi=250, max_width='100%')
 
 
 def plot_umap(df_sample, top_features, target_col='macro_class'):
@@ -1078,34 +1125,17 @@ def plot_umap(df_sample, top_features, target_col='macro_class'):
     plt.tight_layout()
     _display_figure(fig, dpi=250)
 
-
 def plot_umap_3d(df_sample, top_features, macro_col='macro_class', specific_col='original_class', n_samples=None):
     """
-    Interactive Plotly 3-D UMAP projection with macro/specific toggle buttons.
-
-    Parameters
-    ----------
-    df_sample : pd.DataFrame
-        Feature data including macro and specific label columns.
-    top_features : list of str
-        Feature columns to project.
-    macro_col : str
-        Column with macro-class labels (default 'macro_class').
-    specific_col : str
-        Column with specific seizure-type labels (default 'original_class').
-    n_samples : int or None
-        Subsample size (None = use all rows).
+    Proyección UMAP 3D interactiva optimizada para MyST Markdown.
+    Usa renderizado nativo de Plotly para que el gráfico se integre 
+    automáticamente en el sitio web generado.
     """
     dicc_nombres_tusz = {
-        'bckg': 'Actividad Basal',
-        'fnsz': 'Crisis Focal No Específica',
-        'gnsz': 'Crisis Generalizada No Específica',
-        'cpsz': 'Crisis Parcial Compleja',
-        'tcsz': 'Crisis Tónico-Clónica',
-        'spsz': 'Crisis Parcial Simple',
-        'mysz': 'Crisis Mioclónica',
-        'absz': 'Crisis de Ausencia',
-        'tnsz': 'Crisis Tónica'
+        'bckg': 'Actividad Basal', 'fnsz': 'Crisis Focal No Específica',
+        'gnsz': 'Crisis Generalizada No Específica', 'cpsz': 'Crisis Parcial Compleja',
+        'tcsz': 'Crisis Tónico-Clónica', 'spsz': 'Crisis Parcial Simple',
+        'mysz': 'Crisis Mioclónica', 'absz': 'Crisis de Ausencia', 'tnsz': 'Crisis Tónica'
     }
 
     if n_samples is not None:
@@ -1130,11 +1160,10 @@ def plot_umap_3d(df_sample, top_features, macro_col='macro_class', specific_col=
     df_work['u1'], df_work['u2'], df_work['u3'] = embedding[:, 0], embedding[:, 1], embedding[:, 2]
 
     fig = go.Figure()
-    MACRO_PALETTE    = {'Basal': '#1f77b4', 'Focal': '#d62728', 'Generalizada': '#2ca02c'}
-    SPECIFIC_TYPES   = sorted(df_work[specific_col].unique())
+    MACRO_PALETTE = {'Basal': '#1f77b4', 'Focal': '#d62728', 'Generalizada': '#2ca02c'}
+    SPECIFIC_TYPES = sorted(df_work[specific_col].unique())
     SPECIFIC_PALETTE = px.colors.qualitative.Bold
 
-    # Macro traces
     macro_labels = sorted(df_work['macro_es'].unique())
     for label in macro_labels:
         mask = df_work['macro_es'] == label
@@ -1148,7 +1177,6 @@ def plot_umap_3d(df_sample, top_features, macro_col='macro_class', specific_col=
             hovertemplate="<b>Macro:</b> %{customdata[0]}<br><b>Específica:</b> %{customdata[1]}<extra></extra>"
         ))
 
-    # Specific traces
     for i, label in enumerate(SPECIFIC_TYPES):
         mask = df_work[specific_col] == label
         fig.add_trace(go.Scatter3d(
@@ -1172,9 +1200,9 @@ def plot_umap_3d(df_sample, top_features, macro_col='macro_class', specific_col=
             showactive=True, font=dict(size=11),
             buttons=[
                 dict(label="Vista Macroclase", method="update",
-                     args=[{"visible": [True]  * n_macro + [False] * n_specific}]),
-                dict(label="Vista Específica",  method="update",
-                     args=[{"visible": [False] * n_macro + [True]  * n_specific}])
+                     args=[{"visible": [True] * n_macro + [False] * n_specific}]),
+                dict(label="Vista Específica", method="update",
+                     args=[{"visible": [False] * n_macro + [True] * n_specific}])
             ]
         )],
         scene=dict(
@@ -1184,22 +1212,11 @@ def plot_umap_3d(df_sample, top_features, macro_col='macro_class', specific_col=
         legend=dict(
             title_text='<b>Clases</b><br> ', font=dict(size=12),
             itemsizing='constant', itemwidth=30, tracegroupgap=2,
-            itemclick="toggle", itemdoubleclick="toggleothers",
             yanchor="top", y=0.85, xanchor="left", x=-0.12,
             bgcolor="rgba(255, 255, 255, 0.5)"
         )
     )
-
-    local_path = "umap_3d.html"
-    fig.write_html(local_path)
-
-    display(HTML("<script>google.colab.output.setIframeHeight(500, true, {maxHeight: 5000})</script>"))
-    display(HTML(f"""
-        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-            <iframe src="{local_path}" width="85%" height="500px" style="border:none;" scrolling="no"></iframe>
-        </div>
-    """))
-
+    return fig
 
 # =============================================================================
 # SECTION 8 — STATISTICAL TESTS
@@ -1552,12 +1569,12 @@ def plot_seizure(parquet_path, csv_path, zoom_window=10, pre_seconds=3):
     plt.tight_layout()
 
     buf = io.BytesIO()
-    fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
+    fig.savefig(buf, format='png', bbox_inches='tight', dpi=250)
     plt.close(fig)
     data_uri = base64.b64encode(buf.getvalue()).decode('utf-8')
     display(HTML(f'''
         <div style="text-align: center; margin: 15px 0;">
-            <img src="data:image/png;base64,{data_uri}" style="max-width: 75%; border: none;">
+            <img src="data:image/png;base64,{data_uri}" style="max-width: 100%; border: none;">
         </div>
     '''))
 
