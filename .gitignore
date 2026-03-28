@@ -1,12 +1,33 @@
+# --- MyST Site & Build ---
 _build/
-.ipynb_checkpoints/
+.myst/
+node_modules/
 
+# --- Jupyter & Python ---
+.ipynb_checkpoints/
+__pycache__/
+.pytest_cache/
+.virtualenvs/
+.env
+
+# --- Formatos de Datos Pesados ---
 *.parquet
 *.csv
 *.edf
 *.npz
 *.npy
 *.h5
+*.pickle
+*.pkl
 
+# --- Carpetas de Datos Específicas (TUSZ) ---
 02_Metadata/
 04_TUSZ_Features_ML/
+TUSZ_DataLake/
+data/
+raw_data/
+
+# --- Sistema y Otros ---
+.DS_Store
+Thumbs.db
+.vscode/
