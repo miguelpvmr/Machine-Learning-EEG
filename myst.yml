@@ -5,17 +5,63 @@ project:
   id: 8b3b7640-f742-4567-a7bf-22402d4d593f
   title: "Exploración de Datos - TUSZ"
   
+  authors:
+    - name:
+        literal: "Juan Mendoza"
+      email: cjarango@uninorte.edu.co
+      orcid: 0000-0001-6872-8311
+      affiliations:
+        - name: Universidad del Norte
+          city: Barranquilla
+          country: Colombia
+      github: cjarango
+      corresponding: True
+
+    - name:
+        literal: "Paula Andrea Gómez Vargas"
+      email: apaulag@uninorte.edu.co
+      affiliations:
+        - name: Universidad del Norte
+          city: Barranquilla
+          country: Colombia
+      github: apaulag24 
+      corresponding: True
+
+    - name:
+        literal: "Miguel Ángel Pérez Vargas"
+      email: vargasmiguel@uninorte.edu.co
+      affiliations:
+        - name: Universidad del Norte
+          city: Barranquilla
+          country: Colombia
+      github: miguelpvmr
+      corresponding: True
+  
   exclude:
     - TUSZ_DataLake/**
     - models/**
     - src/**
     - _build/**
     - .myst/**
+    - app/**
+    - data/**
+    - docker/**
+    - k8s/**
+    - .github/**
+    - tests/**
+    - monitoring/**
+    - .ruff_cache/**
 
   toc:
+    - file: README.md
+      title: "Introducción"
     - file: "notebooks/1_data_exploration.ipynb"
+      title: "Análisis Exploratorio"
+    - file: "notebooks/2_test_models.ipynb"
+      title: "Entrenamiento y Evaluación"
 
 site:
   template: book-theme
+  github: https://github.com/miguelpvmr/Machine-Learning-EEG
   options:
     style: custom.css
