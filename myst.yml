@@ -3,7 +3,7 @@ version: 1
 
 project:
   id: 8b3b7640-f742-4567-a7bf-22402d4d593f
-  title: "Exploración de Datos - TUSZ"
+  title: "Clasificación de Crisis Epilépticas"
   
   authors:
     - name:
