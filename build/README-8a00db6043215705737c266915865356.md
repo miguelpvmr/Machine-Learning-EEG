@@ -1,13 +1,5 @@
 # Diseño de un flujo analítico para la clasificación de crisis epilépticas en EEG de superficie: Evaluación sobre el Corpus TUSZ
 
----
-
-**Autores:**
-* **Paula Andrea Gómez Vargas** (apaulag@uninorte.edu.co)
-* **Juan Camilo Mendoza Arango** (cjarango@uninorte.edu.co)
-* **Miguel Ángel Pérez Vargas** (vargasmiguel@uninorte.edu.co)
-
----
 
 # Descripción general del proyecto
 
