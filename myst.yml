@@ -18,7 +18,7 @@ project:
       corresponding: True
 
     - name:
-        literal: "Paula Andrea Gómez Vargas"
+        literal: "Paula Gómez"
       email: apaulag@uninorte.edu.co
       affiliations:
         - name: Universidad del Norte
@@ -28,7 +28,7 @@ project:
       corresponding: True
 
     - name:
-        literal: "Miguel Ángel Pérez Vargas"
+        literal: "Miguel Pérez"
       email: vargasmiguel@uninorte.edu.co
       affiliations:
         - name: Universidad del Norte
