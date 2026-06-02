@@ -10,4 +10,7 @@
   <url>
     <loc>http://localhost:3000/test-models</loc>
   </url>
+  <url>
+    <loc>http://localhost:3000/model-explainability</loc>
+  </url>
 </urlset>
