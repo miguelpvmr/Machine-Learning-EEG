@@ -18,7 +18,7 @@ project:
       corresponding: True
 
     - name:
-        literal: "Paula Gómez"
+        literal: "Paula Gómez Vargas"
       email: apaulag@uninorte.edu.co
       affiliations:
         - name: Universidad del Norte
@@ -28,7 +28,7 @@ project:
       corresponding: True
 
     - name:
-        literal: "Miguel Pérez"
+        literal: "Miguel Pérez Vargas"
       email: vargasmiguel@uninorte.edu.co
       affiliations:
         - name: Universidad del Norte
@@ -59,6 +59,8 @@ project:
       title: "Análisis Exploratorio"
     - file: "notebooks/2_test_models.ipynb"
       title: "Entrenamiento y Evaluación"
+    - file: "notebooks/3_model_explainability.ipynb"
+      title: "Análisis de Importancia"
 
 site:
   template: book-theme
