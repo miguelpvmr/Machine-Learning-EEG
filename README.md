@@ -153,12 +153,12 @@ Esta métrica resulta especialmente útil en escenarios multiclase desbalanceado
 
 Adicionalmente, se reportan métricas tradicionales de clasificación:
 
-Accuracy.
-Precision.
-Recall.
-F1-Score.
-Matrices de confusión.
-Curvas ROC.
-Curvas Precision–Recall.
+* Accuracy.
+* Precision.
+* Recall.
+* F1-Score.
+* Matrices de confusión.
+* Curvas ROC.
+* Curvas Precision–Recall.
 
 La selección final de modelos se fundamenta principalmente en el desempeño alcanzado sobre Macro-F2 y G-Index bajo esquemas de validación cruzada estratificada y evaluación independiente sobre pacientes no observados durante el entrenamiento.
